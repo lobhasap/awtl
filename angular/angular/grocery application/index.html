@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="groceryApp">
+<head>
+    <title>Grocery List Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+    <div class="container" ng-controller="GroceryController">
+        <h1>Grocery List Management</h1>
+
+        <!-- Grocery Item Form -->
+        <form name="groceryForm" ng-submit="addGroceryItem()" novalidate>
+            <div>
+                <input type="text" name="itemName" ng-model="newGroceryItem.itemName" placeholder="Item Name" required>
+                <span class="error" ng-show="groceryForm.itemName.$touched && groceryForm.itemName.$error.required">Item Name is required.</span>
+            </div>
+            <div>
+                <input type="number" name="quantity" ng-model="newGroceryItem.quantity" placeholder="Quantity" required min="1">
+                <span class="error" ng-show="groceryForm.quantity.$touched && groceryForm.quantity.$error.required">Quantity is required.</span>
+                <span class="error" ng-show="groceryForm.quantity.$touched && groceryForm.quantity.$error.min">Quantity must be at least 1.</span>
+            </div>
+            <div>
+                <input type="text" name="category" ng-model="newGroceryItem.category" placeholder="Category" required>
+                <span class="error" ng-show="groceryForm.category.$touched && groceryForm.category.$error.required">Category is required.</span>
+            </div>
+            <button type="submit" ng-disabled="groceryForm.$invalid">Add Item</button>
+        </form>
+
+        <!-- Grocery List -->
+        <h2>Grocery List</h2>
+        <ul>
+            <li ng-repeat="item in groceryItems">
+                <h3>{{ item.itemName }}</h3>
+                <p><strong>Quantity:</strong> {{ item.quantity }}</p>
+                <p><strong>Category:</strong> {{ item.category }}</p>
+                <button ng-click="deleteGroceryItem(item)">Delete</button>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

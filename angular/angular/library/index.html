@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html ng-app="libraryApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Library Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container" ng-controller="LibraryController">
+        <h1>Library Management System</h1>
+        
+        <!-- Book Management -->
+        <h2>Books</h2>
+        <form ng-submit="addBook()">
+            <input type="text" ng-model="newBook.title" placeholder="Book Title" required>
+            <input type="text" ng-model="newBook.author" placeholder="Author" required>
+            <input type="number" ng-model="newBook.year" placeholder="Year" required>
+            <button type="submit">Add Book</button>
+        </form>
+        <ul>
+            <li ng-repeat="book in books">
+                <h3>{{ book.title }}</h3>
+                <p><strong>Author:</strong> {{ book.author }}</p>
+                <p><strong>Year:</strong> {{ book.year }}</p>
+                <button class="edit-button" ng-click="editBook(book)">Edit</button>
+                <button ng-click="deleteBook(book)">Delete</button>
+            </li>
+        </ul>
+
+        <!-- Member Management -->
+        <h2>Members</h2>
+        <form ng-submit="addMember()">
+            <input type="text" ng-model="newMember.name" placeholder="Member Name" required>
+            <input type="text" ng-model="newMember.email" placeholder="Email" required>
+            <button type="submit">Add Member</button>
+        </form>
+        <ul>
+            <li ng-repeat="member in members">
+                <h3>{{ member.name }}</h3>
+                <p><strong>Email:</strong> {{ member.email }}</p>
+                <button class="edit-button" ng-click="editMember(member)">Edit</button>
+                <button ng-click="deleteMember(member)">Delete</button>
+            </li>
+        </ul>
+
+        <!-- Borrow/Return Management -->
+        <h2>Borrow/Return Books</h2>
+        <form ng-submit="borrowBook()">
+            <select ng-model="borrow.member" ng-options="member.name for member in members" required>
+                <option value="">Select Member</option>
+            </select>
+            <select ng-model="borrow.book" ng-options="book.title for book in books" required>
+                <option value="">Select Book</option>
+            </select>
+            <button type="submit">Borrow Book</button>
+        </form>
+        <ul>
+            <li ng-repeat="entry in borrowRecords">
+                <h3>{{ entry.book.title }}</h3>
+                <p><strong>Borrowed by:</strong> {{ entry.member.name }}</p>
+                <button ng-click="returnBook(entry)">Return Book</button>
+            </li>
+        </ul>
+
+        <!-- Edit Forms -->
+        <div ng-show="editingBook" id="editBookForm">
+            <h2>Edit Book</h2>
+            <form ng-submit="updateBook()">
+                <input type="text" ng-model="selectedBook.title" placeholder="Book Title" required>
+                <input type="text" ng-model="selectedBook.author" placeholder="Author" required>
+                <input type="number" ng-model="selectedBook.year" placeholder="Year" required>
+                <button type="submit">Update Book</button>
+                <button type="button" ng-click="cancelEditBook()">Cancel</button>
+            </form>
+        </div>
+
+        <div ng-show="editingMember" id="editMemberForm">
+            <h2>Edit Member</h2>
+            <form ng-submit="updateMember()">
+                <input type="text" ng-model="selectedMember.name" placeholder="Member Name" required>
+                <input type="text" ng-model="selectedMember.email" placeholder="Email" required>
+                <button type="submit">Update Member</button>
+                <button type="button" ng-click="cancelEditMember()">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

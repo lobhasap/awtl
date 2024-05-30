@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="doctorApp">
+<head>
+    <title>Doctor Appointment App</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+    <div class="container" ng-controller="AppointmentController">
+        <h1>Doctor Appointment App</h1>
+
+        <!-- Appointment Form -->
+        <form name="appointmentForm" ng-submit="addAppointment()" novalidate>
+            <div>
+                <input type="text" name="name" ng-model="newAppointment.name" placeholder="Patient Name" required>
+                <span class="error" ng-show="appointmentForm.name.$touched && appointmentForm.name.$error.required">Name is required.</span>
+            </div>
+            <div>
+                <input type="text" name="disease" ng-model="newAppointment.disease" placeholder="Disease" required>
+                <span class="error" ng-show="appointmentForm.disease.$touched && appointmentForm.disease.$error.required">Disease is required.</span>
+            </div>
+            <div>
+                <input type="number" name="duration" ng-model="newAppointment.duration" placeholder="Duration (in days)" required>
+                <span class="error" ng-show="appointmentForm.duration.$touched && appointmentForm.duration.$error.required">Duration is required.</span>
+            </div>
+            <div>
+                <input type="date" name="date" ng-model="newAppointment.date" placeholder="Appointment Date" required>
+                <span class="error" ng-show="appointmentForm.date.$touched && appointmentForm.date.$error.required">Appointment Date is required.</span>
+            </div>
+            <button type="submit" ng-disabled="appointmentForm.$invalid">Book Appointment</button>
+        </form>
+
+        <!-- Appointment List -->
+        <h2>Appointments</h2>
+        <ul>
+            <li ng-repeat="appointment in appointments">
+                <h3>{{ appointment.name }}</h3>
+                <p><strong>Disease:</strong> {{ appointment.disease }}</p>
+                <p><strong>Duration:</strong> {{ appointment.duration }} days</p>
+                <p><strong>Appointment Date:</strong> {{ appointment.date | date }}</p>
+                <button ng-click="deleteAppointment(appointment)">Cancel Appointment</button>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

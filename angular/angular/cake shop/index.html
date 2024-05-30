@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html ng-app="cakeShopApp">
+<head>
+    <title>Cake Shop Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+    <div class="container" ng-controller="CakeShopController">
+        <h1>Cake Shop Management</h1>
+
+        <!-- Cake Order Form -->
+        <form name="orderForm" ng-submit="addOrder()" novalidate>
+            <div>
+                <input type="text" name="customerName" ng-model="newOrder.customerName" placeholder="Customer Name" required>
+                <span class="error" ng-show="orderForm.customerName.$touched && orderForm.customerName.$error.required">Customer Name is required.</span>
+            </div>
+            <div>
+                <input type="text" name="address" ng-model="newOrder.address" placeholder="Address" required>
+                <span class="error" ng-show="orderForm.address.$touched && orderForm.address.$error.required">Address is required.</span>
+            </div>
+            <div>
+                <input type="email" name="email" ng-model="newOrder.email" placeholder="Email" required>
+                <span class="error" ng-show="orderForm.email.$touched && orderForm.email.$error.required">Email is required.</span>
+                <span class="error" ng-show="orderForm.email.$touched && orderForm.email.$error.email">Invalid email address.</span>
+            </div>
+            <div>
+                <input type="text" name="cakeType" ng-model="newOrder.cakeType" placeholder="Cake Type" required>
+                <span class="error" ng-show="orderForm.cakeType.$touched && orderForm.cakeType.$error.required">Cake Type is required.</span>
+            </div>
+            <div>
+                <input type="date" name="orderDate" ng-model="newOrder.orderDate" placeholder="Order Date" required>
+                <span class="error" ng-show="orderForm.orderDate.$touched && orderForm.orderDate.$error.required">Order Date is required.</span>
+            </div>
+            <div>
+                <input type="date" name="deliveryDate" ng-model="newOrder.deliveryDate" placeholder="Delivery Date" required>
+                <span class="error" ng-show="orderForm.deliveryDate.$touched && orderForm.deliveryDate.$error.required">Delivery Date is required.</span>
+            </div>
+            <button type="submit" ng-disabled="orderForm.$invalid">Add Order</button>
+        </form>
+
+        <!-- Order List -->
+        <h2>Orders</h2>
+        <ul>
+            <li ng-repeat="order in orders">
+                <h3>{{ order.cakeType }}</h3>
+                <p><strong>Customer Name:</strong> {{ order.customerName }}</p>
+                <p><strong>Address:</strong> {{ order.address }}</p>
+                <p><strong>Email:</strong> {{ order.email }}</p>
+                <p><strong>Order Date:</strong> {{ order.orderDate | date }}</p>
+                <p><strong>Delivery Date:</strong> {{ order.deliveryDate | date }}</p>
+                <button ng-click="deleteOrder(order)">Delete</button>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

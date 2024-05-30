@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="taskApp">
+<head>
+    <title>Task Management System</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+    <div class="container" ng-controller="TaskController">
+        <h1>Task Management System</h1>
+
+        <!-- Task Form -->
+        <form name="taskForm" ng-submit="addTask()" novalidate>
+            <div>
+                <input type="text" name="title" ng-model="newTask.title" placeholder="Task Title" ng-required="true">
+                <span class="error" ng-show="taskForm.title.$touched && taskForm.title.$error.required">Title is required.</span>
+            </div>
+            <div>
+                <input type="text" name="description" ng-model="newTask.description" placeholder="Task Description" ng-required="true">
+                <span class="error" ng-show="taskForm.description.$touched && taskForm.description.$error.required">Description is required.</span>
+            </div>
+            <div>
+                <input type="date" name="dueDate" ng-model="newTask.dueDate" placeholder="Due Date" ng-required="true">
+                <span class="error" ng-show="taskForm.dueDate.$touched && taskForm.dueDate.$error.required">Due Date is required.</span>
+            </div>
+            <button type="submit" ng-disabled="taskForm.$invalid">Add Task</button>
+        </form>
+
+        <!-- Task List -->
+        <h2>Tasks</h2>
+        <ul>
+            <li ng-repeat="task in tasks">
+                <h3>{{ task.title }}</h3>
+                <p><strong>Description:</strong> {{ task.description }}</p>
+                <p><strong>Due Date:</strong> {{ task.dueDate | date }}</p>
+                <button ng-click="deleteTask(task)">Delete</button>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Chat Application</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body ng-app="chatApp" ng-controller="ChatController" class="container">
+    <h1 class="text-center mt-5 mb-4">Private Chat Application</h1>
+
+    <div class="card mb-3">
+        <div class="card-header">
+            Chat between {{ user1 }} and {{ user2 }}
+        </div>
+        <div class="card-body" id="chat-window">
+            <div class="message" ng-repeat="message in messages track by $index">
+                <strong>{{ message.sender }}</strong>: {{ message.text }}
+            </div>
+        </div>
+    </div>
+
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="{{ inputPlaceholder }}" ng-model="newMessage" ng-keyup="$event.keyCode == 13 && sendMessage()">
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="button" ng-click="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

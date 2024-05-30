@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Quiz Application</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .quiz-container {
+      max-width: 600px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    button {
+      margin-top: 10px;
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-app="quizApp" ng-controller="QuizController as quizCtrl">
+  <div class="quiz-container">
+    <h1>Simple Quiz Application</h1>
+    <div ng-repeat="question in quizCtrl.questions">
+      <h3>{{ question.text }}</h3>
+      <ul>
+        <li ng-repeat="choice in question.choices">
+          <label>
+            <input type="radio" ng-model="question.selectedChoice" ng-value="choice">{{ choice }}
+          </label>
+        </li>
+      </ul>
+    </div>
+    <button ng-click="quizCtrl.checkAnswers()">Submit</button>
+    <div class="result" ng-if="quizCtrl.submitted">
+      <p>Your score: {{ quizCtrl.calculateScore() }} out of {{ quizCtrl.questions.length }}</p>
+    </div>
+  </div>
+
+  <script>
+    angular.module('quizApp', [])
+      .controller('QuizController', function() {
+        var vm = this;
+
+        vm.questions = [
+          {
+            text: 'What is the capital of France?',
+            choices: ['London', 'Paris', 'Berlin', 'Madrid'],
+            correctAnswer: 'Paris',
+            selectedChoice: null,
+          },
+          {
+            text: 'What is the largest mammal?',
+            choices: ['Elephant', 'Blue Whale', 'Giraffe', 'Hippo'],
+            correctAnswer: 'Blue Whale',
+            selectedChoice: null,
+          },
+          {
+            text: 'What is the boiling point of water in Celsius?',
+            choices: ['100', '0', '-100', '50'],
+            correctAnswer: '100',
+            selectedChoice: null,
+          }
+        ];
+
+        vm.checkAnswers = function() {
+          vm.submitted = true;
+        };
+
+        vm.calculateScore = function() {
+          var score = 0;
+          vm.questions.forEach(function(question) {
+            if (question.selectedChoice === question.correctAnswer) {
+              score++;
+            }
+          });
+          return score;
+        };
+      });
+  </script>
+</body>
+</html>

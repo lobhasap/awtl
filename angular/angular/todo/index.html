@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="todoApp">
+<head>
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+    <div class="container" ng-controller="TodoController">
+        <h1>To-Do List</h1>
+
+        <!-- To-Do Form -->
+        <form name="todoForm" ng-submit="addTodo()" novalidate>
+            <div>
+                <input type="text" name="task" ng-model="newTodo.task" placeholder="New Task" required>
+                <span class="error" ng-show="todoForm.task.$touched && todoForm.task.$error.required">Task is required.</span>
+            </div>
+            <button type="submit" ng-disabled="todoForm.$invalid">Add Task</button>
+        </form>
+
+        <!-- To-Do List -->
+        <h2>Tasks</h2>
+        <ul>
+            <li ng-repeat="todo in todos">
+                <input type="checkbox" ng-model="todo.completed">
+                <span ng-class="{completed: todo.completed}">{{ todo.task }}</span>
+                <button ng-click="deleteTodo(todo)">Delete</button>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

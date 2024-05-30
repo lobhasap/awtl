@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html ng-app="complaintApp">
+<head>
+    <title>Complaint Management System</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+    <div class="container" ng-controller="ComplaintController">
+        <h1>Complaint Management System</h1>
+
+        <!-- Complaint Form -->
+        <form name="complaintForm" ng-submit="addComplaint()" novalidate>
+            <div>
+                <input type="text" name="name" ng-model="newComplaint.name" placeholder="Your Name" required>
+                <span class="error" ng-show="complaintForm.name.$touched && complaintForm.name.$error.required">Name is required.</span>
+            </div>
+            <div>
+                <input type="email" name="email" ng-model="newComplaint.email" placeholder="Your Email" required>
+                <span class="error" ng-show="complaintForm.email.$touched && complaintForm.email.$error.required">Email is required.</span>
+                <span class="error" ng-show="complaintForm.email.$touched && complaintForm.email.$error.email">Invalid email address.</span>
+            </div>
+            <div>
+                <textarea name="complaint" ng-model="newComplaint.complaint" placeholder="Your Complaint" required></textarea>
+                <span class="error" ng-show="complaintForm.complaint.$touched && complaintForm.complaint.$error.required">Complaint is required.</span>
+            </div>
+            <button type="submit" ng-disabled="complaintForm.$invalid">Submit Complaint</button>
+        </form>
+
+        <!-- Complaint List -->
+        <h2>Complaints</h2>
+        <ul>
+            <li ng-repeat="complaint in complaints">
+                <h3>{{ complaint.name }}</h3>
+                <p><strong>Email:</strong> {{ complaint.email }}</p>
+                <p><strong>Complaint:</strong> {{ complaint.complaint }}</p>
+                <button ng-click="deleteComplaint(complaint)">Delete</button>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

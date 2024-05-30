@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="financeApp">
+<head>
+    <title>Personal Finance Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+    <div ng-controller="FinanceController" class="container">
+        <h1>Personal Finance Tracker</h1>
+
+        <!-- Transaction Form -->
+        <form name="transactionForm" ng-submit="addTransaction()" novalidate>
+            <div>
+                <input type="text" name="description" ng-model="newTransaction.description" placeholder="Description" required>
+                <span class="error" ng-show="transactionForm.description.$touched && transactionForm.description.$error.required">Description is required.</span>
+            </div>
+            <div>
+                <input type="number" name="amount" ng-model="newTransaction.amount" placeholder="Amount" required>
+                <span class="error" ng-show="transactionForm.amount.$touched && transactionForm.amount.$error.required">Amount is required.</span>
+            </div>
+            <div>
+                <select ng-model="newTransaction.type" required>
+                    <option value="">Select Type</option>
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+                <span class="error" ng-show="transactionForm.type.$touched && transactionForm.type.$error.required">Type is required.</span>
+            </div>
+            <button type="submit" ng-disabled="transactionForm.$invalid">Add Transaction</button>
+        </form>
+
+        <!-- Transaction List -->
+        <h2>Transactions</h2>
+        <ul>
+            <li ng-repeat="transaction in transactions">
+                <h3>{{ transaction.description }}</h3>
+                <p><strong>Amount:</strong> {{ transaction.amount | currency }}</p>
+                <p><strong>Type:</strong> {{ transaction.type }}</p>
+                <button ng-click="deleteTransaction(transaction)">Delete</button>
+            </li>
+        </ul>
+
+        <!-- Balance Summary -->
+        <h2>Summary</h2>
+        <p><strong>Total Income:</strong> {{ getTotalIncome() | currency }}</p>
+        <p><strong>Total Expense:</strong> {{ getTotalExpense() | currency }}</p>
+        <p><strong>Net Balance:</strong> {{ getNetBalance() | currency }}</p>
+    </div>
+</body>
+</html>

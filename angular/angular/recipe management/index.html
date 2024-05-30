@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="recipeApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container" ng-controller="RecipeController">
+        <h1>Recipe Management System</h1>
+
+        <form ng-submit="addRecipe()">
+            <input type="text" ng-model="newRecipe.name" placeholder="Recipe Name" required>
+            <textarea ng-model="newRecipe.ingredients" placeholder="Ingredients" required></textarea>
+            <textarea ng-model="newRecipe.instructions" placeholder="Instructions" required></textarea>
+            <button type="submit">Add Recipe</button>
+        </form>
+
+        <h2>Recipes</h2>
+        <ul>
+            <li ng-repeat="recipe in recipes">
+                <h3>{{ recipe.name }}</h3>
+                <p><strong>Ingredients:</strong></p>
+                <p>{{ recipe.ingredients }}</p>
+                <p><strong>Instructions:</strong></p>
+                <p>{{ recipe.instructions }}</p>
+                <button class="edit-button" ng-click="editRecipe(recipe)">Edit</button>
+                <button ng-click="deleteRecipe(recipe)">Delete</button>
+            </li>
+        </ul>
+
+        <div ng-show="editing" id="editForm">
+            <h2>Edit Recipe</h2>
+            <form ng-submit="updateRecipe()">
+                <input type="text" ng-model="selectedRecipe.name" placeholder="Recipe Name" required>
+                <textarea ng-model="selectedRecipe.ingredients" placeholder="Ingredients" required></textarea>
+                <textarea ng-model="selectedRecipe.instructions" placeholder="Instructions" required></textarea>
+                <button type="submit">Update Recipe</button>
+                <button type="button" ng-click="cancelEdit()">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

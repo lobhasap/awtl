@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="tourismApp">
+<head>
+    <title>Tourism Booking Application</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+<body>
+    <div class="container" ng-controller="TourismController">
+        <h1>Tourism Booking Application</h1>
+
+        <!-- Booking Form -->
+        <form name="bookingForm" ng-submit="addBooking()" novalidate>
+            <div>
+                <input type="text" name="destination" ng-model="newBooking.destination" placeholder="Destination" required>
+                <span class="error" ng-show="bookingForm.destination.$touched && bookingForm.destination.$error.required">Destination is required.</span>
+            </div>
+            <div>
+                <input type="date" name="departureDate" ng-model="newBooking.departureDate" placeholder="Departure Date" required>
+                <span class="error" ng-show="bookingForm.departureDate.$touched && bookingForm.departureDate.$error.required">Departure date is required.</span>
+            </div>
+            <div>
+                <input type="date" name="arrivalDate" ng-model="newBooking.arrivalDate" placeholder="Arrival Date" required>
+                <span class="error" ng-show="bookingForm.arrivalDate.$touched && bookingForm.arrivalDate.$error.required">Arrival date is required.</span>
+            </div>
+            <div>
+                <input type="text" name="disease" ng-model="newBooking.disease" placeholder="Disease (if any)">
+            </div>
+            <button type="submit" ng-disabled="bookingForm.$invalid">Book Tour</button>
+        </form>
+
+        <!-- Booking List -->
+        <h2>Bookings</h2>
+        <ul>
+            <li ng-repeat="booking in bookings">
+                <h3>{{ booking.destination }}</h3>
+                <p><strong>Departure Date:</strong> {{ booking.departureDate | date }}</p>
+                <p><strong>Arrival Date:</strong> {{ booking.arrivalDate | date }}</p>
+                <p><strong>Disease:</strong> {{ booking.disease || 'None' }}</p>
+                <button ng-click="deleteBooking(booking)">Delete</button>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body ng-app="weatherApp" ng-controller="WeatherController">
+
+    <h1>Weather Forecast</h1>
+
+    <div ng-if="loading">Loading...</div>
+
+    <div ng-if="error">{{ error }}</div>
+
+    <div ng-if="!loading && !error">
+        <h2>{{ weatherData.city }}</h2>
+        <p>Current Temperature: {{ weatherData.temperature }}°C</p>
+        <p>Weather: {{ weatherData.weather }}</p>
+        <!-- Add more weather information here -->
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

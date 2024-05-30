@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fitness Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body ng-app="FitnessTrackerApp" ng-controller="MainController">
+    <div class="container">
+        <h1>Fitness Tracker</h1>
+        <form ng-submit="addWorkout(newWorkout)">
+            <label for="workoutName">Workout Name:</label>
+            <input type="text" id="workoutName" ng-model="newWorkout.name" required>
+            <label for="caloriesBurned">Calories Burned:</label>
+            <input type="number" id="caloriesBurned" ng-model="newWorkout.calories" required>
+            <label for="steps">Steps:</label>
+            <input type="number" id="steps" ng-model="newWorkout.steps" required>
+            <button type="submit">Add Workout</button>
+        </form>
+        <h2>Workouts:</h2>
+        <ul>
+            <li ng-repeat="workout in trackerData.workouts track by workout.id">
+                {{ workout.name }} - {{ workout.calories }} calories - {{ workout.steps }} steps
+            </li>
+        </ul>
+        <h2>Total Steps: {{ trackerData.steps }}</h2>
+        <h2>Total Calories Burned: {{ trackerData.calories }}</h2>
+        <button ng-click="clearLocalStorage()">Clear Data</button>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

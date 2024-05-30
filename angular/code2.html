@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="validationApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation Example with AngularJS</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #e0f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+        }
+        h2 {
+            color: #00796b;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #00796b;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #b2dfdb;
+            border-radius: 5px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group .error {
+            color: #d32f2f;
+            font-size: 12px;
+            margin-top: 5px;
+            display: block;
+        }
+        .form-group .radio-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        .form-group .radio-group label {
+            color: #00796b;
+            margin-right: 10px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #00796b;
+            border: none;
+            border-radius: 5px;
+            color: #ffffff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #004d40;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+        angular.module('validationApp', [])
+        .controller('FormController', ['$scope', function($scope) {
+            $scope.formData = {};
+
+            $scope.submitForm = function(isValid) {
+                if (isValid) {
+                    alert('Form submitted successfully!');
+                    // Process form data here
+                }
+            };
+        }]);
+    </script>
+</head>
+<body ng-controller="FormController">
+    <div class="container">
+        <h2>Sign Up</h2>
+        <form name="signupForm" ng-submit="submitForm(signupForm.$valid)" novalidate>
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" ng-model="formData.username" required>
+                <span class="error" ng-show="signupForm.username.$dirty && signupForm.username.$invalid">Username is required</span>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" ng-model="formData.email" required>
+                <span class="error" ng-show="signupForm.email.$dirty && signupForm.email.$invalid">Invalid email address</span>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" ng-model="formData.password" ng-minlength="6" required>
+                <span class="error" ng-show="signupForm.password.$dirty && signupForm.password.$invalid">Password must be at least 6 characters</span>
+            </div>
+            <div class="form-group">
+                <label>Gender</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="gender" value="male" ng-model="formData.gender" required> Male</label>
+                    <label><input type="radio" name="gender" value="female" ng-model="formData.gender" required> Female</label>
+                </div>
+                <span class="error" ng-show="signupForm.gender.$dirty && signupForm.gender.$invalid">Gender is required</span>
+            </div>
+            <div class="form-group">
+                <label for="bio">Bio</label>
+                <textarea id="bio" name="bio" ng-model="formData.bio" rows="4"></textarea>
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+</body>
+</html>
