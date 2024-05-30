@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>True/False Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>True/False Quiz</h1>
+        <form id="quizForm">
+            <div class="question">
+                <p>1. The Earth is flat.</p>
+                <label>
+                    <input type="radio" name="q1" value="true"> True
+                </label>
+                <label>
+                    <input type="radio" name="q1" value="false"> False
+                </label>
+            </div>
+            <div class="question">
+                <p>2. Water boils at 100 degrees Celsius.</p>
+                <label>
+                    <input type="radio" name="q2" value="true"> True
+                </label>
+                <label>
+                    <input type="radio" name="q2" value="false"> False
+                </label>
+            </div>
+            <div class="question">
+                <p>3. The capital of France is London.</p>
+                <label>
+                    <input type="radio" name="q3" value="true"> True
+                </label>
+                <label>
+                    <input type="radio" name="q3" value="false"> False
+                </label>
+            </div>
+            <div class="question">
+                <p>4. A camel can store water in its hump.</p>
+                <label>
+                    <input type="radio" name="q4" value="true"> True
+                </label>
+                <label>
+                    <input type="radio" name="q4" value="false"> False
+                </label>
+            </div>
+            <div class="question">
+                <p>5. Mount Everest is the tallest mountain in the world.</p>
+                <label>
+                    <input type="radio" name="q5" value="true"> True
+                </label>
+                <label>
+                    <input type="radio" name="q5" value="false"> False
+                </label>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="result" class="hidden">
+            <h2>Quiz Result</h2>
+            <p id="score"></p>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

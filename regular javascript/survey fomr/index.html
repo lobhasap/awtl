@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Survey Form</h1>
+        <form id="surveyForm">
+            <div class="question">
+                <label for="q1">Question 1: How satisfied are you with our service?</label>
+                <select id="q1" name="q1">
+                    <option value="5">Very Satisfied</option>
+                    <option value="4">Satisfied</option>
+                    <option value="3">Neutral</option>
+                    <option value="2">Dissatisfied</option>
+                    <option value="1">Very Dissatisfied</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="q2">Question 2: What is your favorite feature?</label>
+                <input type="text" id="q2" name="q2">
+            </div>
+            <div class="question">
+                <label for="q3">Question 3: Any additional comments?</label>
+                <textarea id="q3" name="q3"></textarea>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="summary" class="hidden">
+            <h2>Thank You!</h2>
+            <p>Here's a summary of your responses:</p>
+            <ul id="responseSummary"></ul>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

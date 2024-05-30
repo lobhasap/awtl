@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flower Shop</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Our Flower Shop</h1>
+        <nav>
+            <ul>
+                <li><a href="#flowers">Flowers</a></li>
+                <li><a href="#bouquets">Bouquets</a></li>
+                <li><a href="#combos">Combos</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="flowers" class="container">
+            <h2>Our Flowers</h2>
+            <div class="flower">
+                <img src="flower1.jpg" alt="Flower 1">
+                <h3>Rose</h3>
+                <p>Details about Rose...</p>
+            </div>
+            <div class="flower">
+                <img src="flower2.jpg" alt="Flower 2">
+                <h3>Lily</h3>
+                <p>Details about Lily...</p>
+            </div>
+        </section>
+        <section id="bouquets" class="container">
+            <h2>Our Bouquets</h2>
+            <div class="bouquet">
+                <img src="bouquet1.jpg" alt="Bouquet 1">
+                <h3>Romantic Bouquet</h3>
+                <p>Details about Romantic Bouquet...</p>
+            </div>
+            <div class="bouquet">
+                <img src="bouquet2.jpg" alt="Bouquet 2">
+                <h3>Spring Bouquet</h3>
+                <p>Details about Spring Bouquet...</p>
+            </div>
+        </section>
+        <section id="combos" class="container">
+            <h2>Our Combos</h2>
+            <div class="combo">
+                <img src="combo1.jpg" alt="Combo 1">
+                <h3>Flower & Chocolate Combo</h3>
+                <p>Details about Flower & Chocolate Combo...</p>
+            </div>
+            <div class="combo">
+                <img src="combo2.jpg" alt="Combo 2">
+                <h3>Flower & Teddy Bear Combo</h3>
+                <p>Details about Flower & Teddy Bear Combo...</p>
+            </div>
+        </section>
+    </main>
+    <footer id="contact">
+        <h2>Contact Us</h2>
+        <div class="container">
+            <form id="contactForm">
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name">
+                    <span id="nameError" class="error"></span>
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email">
+                    <span id="emailError" class="error"></span>
+                </div>
+                <div>
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message"></textarea>
+                    <span id="messageError" class="error"></span>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+            <p>Email: info@flowershop.com</p>
+            <p>Phone: +123 456 7890</p>
+        </div>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>

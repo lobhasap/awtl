@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Service Centre</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to Our Car Service Centre</h1>
+        <nav>
+            <ul>
+                <li><a href="#cars">Cars</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="cars" class="container">
+            <h2>Our Cars</h2>
+            <div class="car">
+                <img src="car1.jpg" alt="Car 1">
+                <h3>Car Model 1</h3>
+                <p>Details about Car Model 1...</p>
+            </div>
+            <div class="car">
+                <img src="car2.jpg" alt="Car 2">
+                <h3>Car Model 2</h3>
+                <p>Details about Car Model 2...</p>
+            </div>
+        </section>
+        <section id="services" class="container">
+            <h2>Services Offered</h2>
+            <div class="service">
+                <img src="service1.jpg" alt="Service 1">
+                <h3>Service 1</h3>
+                <p>Details about Service 1...</p>
+            </div>
+            <div class="service">
+                <img src="service2.jpg" alt="Service 2">
+                <h3>Service 2</h3>
+                <p>Details about Service 2...</p>
+            </div>
+        </section>
+    </main>
+    <footer id="contact">
+        <h2>Contact Us</h2>
+        <div class="container">
+            <form id="contactForm">
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name">
+                    <span id="nameError" class="error"></span>
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email">
+                    <span id="emailError" class="error"></span>
+                </div>
+                <div>
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message"></textarea>
+                    <span id="messageError" class="error"></span>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+            <p>Email: info@carservicecentre.com</p>
+            <p>Phone: +123 456 7890</p>
+        </div>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+</html>
